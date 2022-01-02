@@ -18,21 +18,25 @@
 workspace(name = "com_github_brpc_brpc")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "rules_python",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.0.2/rules_python-0.0.2.tar.gz",
+    strip_prefix = "rules_python-0.0.2",
+    sha256 = "b5668cde8bb6e3515057ef465a35ad712214962f0b3a314e551204266c7be90c",
+)
 
-skylib_version = "0.8.0"
+skylib_version = "1.1.1"
 http_archive(
     name = "bazel_skylib",
     type = "tar.gz",
-    url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib.{}.tar.gz".format (skylib_version, skylib_version),
-    sha256 = "2ef429f5d7ce7111263289644d233707dba35e39696377ebab8b0bc701f7818e",
+    url = "https://github.com/bazelbuild/bazel-skylib/releases/download/{}/bazel-skylib-{}.tar.gz".format (skylib_version, skylib_version),
 )
 
 http_archive(
   name = "com_google_protobuf",
-  strip_prefix = "protobuf-3.6.1.3",
-  sha256 = "9510dd2afc29e7245e9e884336f848c8a6600a14ae726adb6befdb4f786f0be2",
+  strip_prefix = "protobuf-3.18.1",
   type = "zip",
-  url = "https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.zip",
+  url = "https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.18.1.zip",
 )
 
 http_archive(
