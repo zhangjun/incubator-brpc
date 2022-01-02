@@ -23,6 +23,21 @@ FATAL: 12-26 10:01:25:   * 0 [src/brpc/policy/giano_authenticator.cpp:65][429496
 WARNING: 12-26 10:01:25:   * 0 [src/brpc/input_messenger.cpp:132][4294969345] Authentication failed, remote side(127.0.0.1:22989) of sockfd=5, close it
 ```
 
+# 查看方法
+
+1. 通过builtin service的 /hotspots/cpu 页面查看
+1. 通过pprof 工具查看，如 tools/pprof --text localhost:9002/pprof/profile
+
+# 控制采样频率
+
+启动前设置环境变量：export CPUPROFILE_FREQUENCY=xxx
+
+默认值为: 100
+
+# 控制采样时间
+
+url加上?seconds=秒数，如/hotspots/cpu?seconds=5
+
 # 图示
 
 下图是一次运行cpu profiler后的结果：
@@ -98,3 +113,7 @@ Total: 2954 samples
 
 1. 安装[standalone pprof](https://github.com/google/pprof)，并把下载的pprof二进制文件路径写入环境变量GOOGLE_PPROF_BINARY_PATH中
 2. 安装llvm-symbolizer（将函数符号转化为函数名），直接用brew安装即可：`brew install llvm`
+
+# 火焰图
+
+若需要结果以火焰图的方式展示，请下载并安装[FlameGraph](https://github.com/brendangregg/FlameGraph)工具，将环境变量FLAMEGRAPH_PL_PATH正确设置到本地的/path/to/flamegraph.pl后启动server即可。
